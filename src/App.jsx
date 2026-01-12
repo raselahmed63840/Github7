@@ -1,13 +1,14 @@
 import React from "react";
+import Dashboard from "./pages/Dashboard";
+import { EmployeeProvider } from "./context/EmployeeContext";
 
 const App = () => {
   return (
-    <div>
-      <h2>hello bangladesh</h2>
-      <p> This is a sample paragraph.</p>
-      <p> Bangladesh</p>
-      <p>5 change in this code</p>
-    </div>
+    <EmployeeProvider>
+      <div>
+        <Dashboard />
+      </div>
+    </EmployeeProvider>
   );
 };
 
