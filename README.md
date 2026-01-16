@@ -286,13 +286,15 @@ MIT License - See LICENSE file
 
 ## 👨‍💻 Author
 
-Tashfia - Ostad Job Placement Team
+Rasel Ahmed - Development
 
 ## 📞 Support
 
 - Check GitHub Issues
 - Review documentation
 - Create new issue with details
+- Md. Rasel Ahmed
+- rasel63840@gmail.com
 
 ---
 

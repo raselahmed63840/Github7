@@ -351,7 +351,7 @@ npm run build
 
 ## 📞 Support
 
-- **Email:** tashfia@ostad.com
+- **Email:** rasel63840@gmail.com
 - **GitHub Issues:** Create issue in repository
 - **Discord:** Ostad community channel
 
