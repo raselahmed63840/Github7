@@ -293,7 +293,6 @@ Rasel Ahmed - Development
 - Check GitHub Issues
 - Review documentation
 - Create new issue with details
-- Md. Rasel Ahmed
 - rasel63840@gmail.com
 
 ---
