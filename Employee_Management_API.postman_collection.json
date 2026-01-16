@@ -1,0 +1,461 @@
+{
+  "info": {
+    "_postman_id": "employee-management-system-api",
+    "name": "Employee Management System API",
+    "description": "API collection for Employee Management System - MERN Stack Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Register a new user"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "auth", "register"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"message\": \"User registered successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Login with email and password"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "auth", "login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"user@example.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "logout"]
+            },
+            "description": "Logout current user"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/employees?page=1&limit=10&department=IT&status=Active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "department",
+                  "value": "IT"
+                },
+                {
+                  "key": "status",
+                  "value": "Active"
+                }
+              ]
+            },
+            "description": "Get all employees with optional filtering and pagination"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/employees",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "employees"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Rasel Ahmed\",\n      \"department\": \"IT\",\n      \"role\": \"Frontend Developer\",\n      \"joiningDate\": \"2023-05-10\",\n      \"status\": \"Active\",\n      \"performance\": 85\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Sadia Rahman\",\n      \"department\": \"HR\",\n      \"role\": \"HR Manager\",\n      \"joiningDate\": \"2022-11-01\",\n      \"status\": \"Active\",\n      \"performance\": 78\n    }\n  ],\n  \"pagination\": {\n    \"page\": 1,\n    \"limit\": 10,\n    \"total\": 2\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Employee by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/employees/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees", "1"]
+            },
+            "description": "Get a specific employee by ID"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/employees/1",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "employees", "1"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"Rasel Ahmed\",\n    \"department\": \"IT\",\n    \"role\": \"Frontend Developer\",\n    \"joiningDate\": \"2023-05-10\",\n    \"status\": \"Active\",\n    \"performance\": 85\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Employee\",\n  \"department\": \"IT\",\n  \"role\": \"Backend Developer\",\n  \"joiningDate\": \"2025-01-17\",\n  \"status\": \"Active\",\n  \"performance\": 75\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/employees",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees"]
+            },
+            "description": "Create a new employee"
+          },
+          "response": [
+            {
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Employee\",\n  \"department\": \"IT\",\n  \"role\": \"Backend Developer\",\n  \"joiningDate\": \"2025-01-17\",\n  \"status\": \"Active\",\n  \"performance\": 75\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/employees",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "employees"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Employee created successfully\",\n  \"data\": {\n    \"id\": 4,\n    \"name\": \"New Employee\",\n    \"department\": \"IT\",\n    \"role\": \"Backend Developer\",\n    \"joiningDate\": \"2025-01-17\",\n    \"status\": \"Active\",\n    \"performance\": 75\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Employee",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rasel Ahmed Updated\",\n  \"department\": \"IT\",\n  \"role\": \"Senior Frontend Developer\",\n  \"joiningDate\": \"2023-05-10\",\n  \"status\": \"Active\",\n  \"performance\": 90\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/employees/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees", "1"]
+            },
+            "description": "Update an existing employee"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Rasel Ahmed Updated\",\n  \"department\": \"IT\",\n  \"role\": \"Senior Frontend Developer\",\n  \"joiningDate\": \"2023-05-10\",\n  \"status\": \"Active\",\n  \"performance\": 90\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/employees/1",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "employees", "1"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Employee updated successfully\",\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"Rasel Ahmed Updated\",\n    \"department\": \"IT\",\n    \"role\": \"Senior Frontend Developer\",\n    \"joiningDate\": \"2023-05-10\",\n    \"status\": \"Active\",\n    \"performance\": 90\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Employee",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/employees/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees", "1"]
+            },
+            "description": "Delete/Archive an employee"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/employees/1",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "employees", "1"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Employee deleted successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Employees",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/employees/search?q=Rasel&department=IT&status=Active&startDate=2023-01-01&endDate=2023-12-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Rasel",
+                  "description": "Search query (name, role, etc.)"
+                },
+                {
+                  "key": "department",
+                  "value": "IT",
+                  "description": "Filter by department"
+                },
+                {
+                  "key": "status",
+                  "value": "Active",
+                  "description": "Filter by status"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2023-01-01",
+                  "description": "Filter by joining date (from)"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2023-12-31",
+                  "description": "Filter by joining date (to)"
+                }
+              ]
+            },
+            "description": "Search and filter employees"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/employees/search?q=Rasel",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "employees", "search"],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Rasel"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Rasel Ahmed\",\n      \"department\": \"IT\",\n      \"role\": \"Frontend Developer\",\n      \"joiningDate\": \"2023-05-10\",\n      \"status\": \"Active\",\n      \"performance\": 85\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "stats"]
+            },
+            "description": "Get dashboard statistics (total employees, departments, active status, etc.)"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/dashboard/stats",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "dashboard", "stats"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"totalEmployees\": 3,\n    \"activeEmployees\": 2,\n    \"archivedEmployees\": 1,\n    \"departmentCount\": {\n      \"IT\": 1,\n      \"HR\": 1,\n      \"Finance\": 1\n    },\n    \"averagePerformance\": 76.0\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
