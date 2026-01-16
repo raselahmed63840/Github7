@@ -93,38 +93,72 @@ const Dashboard = () => {
           justifyContent: "space-between",
           alignItems: "center",
           paddingRight: 20,
+          paddingLeft: 20,
+          flexWrap: "wrap",
+          gap: 12,
         }}
       >
-        <h2 style={{ color: "white", margin: 0 }}>Employee Management</h2>
-        <div>
-          <span style={{ marginRight: 20 }}>Welcome, {user?.name}</span>
+        <h2
+          style={{
+            color: "white",
+            margin: 0,
+            fontSize: "clamp(16px, 5vw, 24px)",
+          }}
+        >
+          Employee Management
+        </h2>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            flexWrap: "wrap",
+          }}
+        >
+          <span style={{ marginRight: 10, fontSize: "clamp(12px, 3vw, 14px)" }}>
+            Welcome, {user?.name}
+          </span>
           <Button
             type="primary"
             danger
             icon={<LogoutOutlined />}
             onClick={handleLogout}
+            size="small"
           >
             Logout
           </Button>
         </div>
       </Header>
-      <Content style={{ padding: "20px" }}>
+      <Content style={{ padding: "clamp(12px, 5vw, 20px)" }}>
         <div style={{ marginBottom: 16 }}>
           <SearchFilter onFilter={setFilters} />
         </div>
-        <div style={{ marginBottom: 16, display: "flex", gap: 10 }}>
+        <div
+          style={{
+            marginBottom: 16,
+            display: "flex",
+            gap: 10,
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
           <Button
             type="primary"
             icon={<PlusOutlined />}
             onClick={handleAddEmployee}
+            size="middle"
           >
             Add Employee
           </Button>
-          <Switch
-            checked={view === "card"}
-            onChange={(checked) => setView(checked ? "card" : "table")}
-          />
-          <span> Toggle Card View</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <Switch
+              checked={view === "card"}
+              onChange={(checked) => setView(checked ? "card" : "table")}
+            />
+            <span style={{ fontSize: "clamp(12px, 3vw, 14px)" }}>
+              Toggle View
+            </span>
+          </div>
         </div>
 
         {filteredEmployees.length === 0 ? (

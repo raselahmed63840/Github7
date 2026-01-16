@@ -38,26 +38,28 @@ const SearchFilter = ({ onFilter }) => {
     <div
       style={{
         marginBottom: 20,
-        padding: "16px",
+        padding: "clamp(12px, 3vw, 16px)",
         backgroundColor: "#fafafa",
         borderRadius: "4px",
       }}
     >
       <Form layout="vertical">
-        <Form.Item label="Search Employee">
+        <Form.Item label="Search Employee" style={{ marginBottom: "12px" }}>
           <Input
             placeholder="Search by employee name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             allowClear
+            size="large"
           />
         </Form.Item>
 
-        <Space wrap style={{ width: "100%" }}>
-          <Form.Item style={{ marginBottom: 0 }}>
+        <Space wrap style={{ width: "100%", gap: "8px" }}>
+          <Form.Item
+            style={{ marginBottom: 0, minWidth: "clamp(140px, 30vw, 200px)" }}
+          >
             <Select
-              placeholder="Filter by Department"
-              style={{ width: 200 }}
+              placeholder="Department"
               allowClear
               onChange={(val) => setFilters({ ...filters, department: val })}
               value={filters.department || undefined}
@@ -71,10 +73,11 @@ const SearchFilter = ({ onFilter }) => {
             />
           </Form.Item>
 
-          <Form.Item style={{ marginBottom: 0 }}>
+          <Form.Item
+            style={{ marginBottom: 0, minWidth: "clamp(120px, 25vw, 150px)" }}
+          >
             <Select
-              placeholder="Filter by Status"
-              style={{ width: 150 }}
+              placeholder="Status"
               allowClear
               onChange={(val) => setFilters({ ...filters, status: val })}
               value={filters.status || undefined}
@@ -86,9 +89,12 @@ const SearchFilter = ({ onFilter }) => {
             />
           </Form.Item>
 
-          <Form.Item style={{ marginBottom: 0 }}>
+          <Form.Item
+            style={{ marginBottom: 0, minWidth: "clamp(200px, 50vw, 280px)" }}
+          >
             <RangePicker
               format="YYYY-MM-DD"
+              style={{ width: "100%" }}
               value={
                 filters.dateRange && filters.dateRange.length === 2
                   ? [dayjs(filters.dateRange[0]), dayjs(filters.dateRange[1])]
@@ -107,7 +113,7 @@ const SearchFilter = ({ onFilter }) => {
                   setFilters({ ...filters, dateRange: [] });
                 }
               }}
-              placeholder={["Start Date", "End Date"]}
+              placeholder={["Start", "End"]}
             />
           </Form.Item>
 

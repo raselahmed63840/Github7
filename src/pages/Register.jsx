@@ -36,22 +36,36 @@ const Register = () => {
         alignItems: "center",
         justifyContent: "center",
         background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        padding: "20px",
+        padding: "clamp(12px, 3vw, 20px)",
       }}
     >
       <Card
         style={{
           width: "100%",
           maxWidth: 420,
+          minWidth: "280px",
           boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2)",
           borderRadius: "8px",
+          padding: "clamp(16px, 4vw, 24px)",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <h1 style={{ margin: "0 0 8px 0", color: "#1890ff", fontSize: 28 }}>
+          <h1
+            style={{
+              margin: "0 0 8px 0",
+              color: "#1890ff",
+              fontSize: "clamp(20px, 5vw, 28px)",
+            }}
+          >
             Create Account
           </h1>
-          <p style={{ margin: 0, color: "#666", fontSize: 14 }}>
+          <p
+            style={{
+              margin: 0,
+              color: "#666",
+              fontSize: "clamp(12px, 3vw, 14px)",
+            }}
+          >
             Register to access the system
           </p>
         </div>

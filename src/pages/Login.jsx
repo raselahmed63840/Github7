@@ -46,15 +46,29 @@ const Login = () => {
         style={{
           width: "100%",
           maxWidth: 420,
+          minWidth: "280px",
           boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2)",
           borderRadius: "8px",
+          padding: "clamp(16px, 4vw, 24px)",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <h1 style={{ margin: "0 0 8px 0", color: "#1890ff", fontSize: 28 }}>
+          <h1
+            style={{
+              margin: "0 0 8px 0",
+              color: "#1890ff",
+              fontSize: "clamp(20px, 5vw, 28px)",
+            }}
+          >
             Employee Management System
           </h1>
-          <p style={{ margin: 0, color: "#666", fontSize: 14 }}>
+          <p
+            style={{
+              margin: 0,
+              color: "#666",
+              fontSize: "clamp(12px, 3vw, 14px)",
+            }}
+          >
             Login to your account
           </p>
         </div>
@@ -109,10 +123,10 @@ const Login = () => {
         <div
           style={{
             marginTop: 24,
-            padding: 12,
+            padding: "clamp(8px, 3vw, 12px)",
             backgroundColor: "#e6f7ff",
             borderRadius: 4,
-            fontSize: 12,
+            fontSize: "clamp(11px, 2.5vw, 12px)",
             color: "#0050b3",
           }}
         >

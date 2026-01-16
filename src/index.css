@@ -142,9 +142,34 @@ body,
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .ant-table {
+    font-size: 13px;
+  }
+
+  .ant-table-thead > tr > th {
+    padding: 8px 12px;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 8px 12px;
+  }
+}
+
 @media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    font-size: 14px;
+  }
+
   .ant-layout-header {
-    padding: 0 16px;
+    padding: 0 12px;
+    height: auto;
+    min-height: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .action-buttons {
@@ -157,7 +182,162 @@ body,
 
   .ant-drawer-content-wrapper {
     width: 100% !important;
-    max-width: 100%;
+    max-width: 100% !important;
+  }
+
+  .ant-table {
+    font-size: 12px;
+  }
+
+  .ant-table-thead > tr > th {
+    padding: 6px 8px;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 6px 8px;
+  }
+
+  .ant-button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .ant-button-lg {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .ant-input,
+  .ant-select-selector,
+  .ant-picker {
+    font-size: 13px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 13px;
+  }
+
+  .ant-card {
+    margin-bottom: 12px;
+  }
+
+  .ant-pagination {
+    font-size: 12px;
+  }
+
+  .filter-section {
+    padding: 12px;
+  }
+
+  .employee-header {
+    padding: 20px 16px;
+  }
+
+  .employee-header h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  html,
+  body,
+  #root {
+    font-size: 13px;
+  }
+
+  .ant-layout-header {
+    padding: 8px;
+    min-height: 48px;
+  }
+
+  .ant-layout-header h2 {
+    font-size: 16px !important;
+  }
+
+  .ant-layout-header span {
+    font-size: 11px !important;
+  }
+
+  .ant-button {
+    padding: 2px 6px;
+    font-size: 11px;
+    height: auto;
+    line-height: 1.5;
+  }
+
+  .ant-button-lg {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .ant-input,
+  .ant-select-selector,
+  .ant-picker {
+    font-size: 12px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 8px;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 12px;
+  }
+
+  .ant-table {
+    font-size: 11px;
+  }
+
+  .ant-table-thead > tr > th {
+    padding: 4px 6px;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 4px 6px;
+  }
+
+  .ant-pagination {
+    font-size: 11px;
+  }
+
+  .ant-card-head {
+    padding: 12px 8px;
+  }
+
+  .ant-card-body {
+    padding: 12px 8px;
+  }
+
+  .ant-drawer-header {
+    padding: 12px 16px;
+  }
+
+  .ant-drawer-body {
+    padding: 16px 12px;
+  }
+
+  .filter-section {
+    padding: 8px;
+  }
+
+  .employee-header {
+    padding: 16px 12px;
+  }
+
+  .employee-header h1 {
+    font-size: 18px;
+  }
+
+  .action-buttons {
+    gap: 6px;
+  }
+
+  .action-buttons button {
+    width: 100%;
   }
 }
 

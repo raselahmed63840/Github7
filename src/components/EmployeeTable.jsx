@@ -8,6 +8,8 @@ const EmployeeTable = ({ onEdit, employees = [] }) => {
   const { setEmployees, employees: contextEmployees } =
     useContext(EmployeeContext);
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   const handleDelete = (id) => {
     setEmployees(
       contextEmployees.map((emp) =>
@@ -16,88 +18,101 @@ const EmployeeTable = ({ onEdit, employees = [] }) => {
     );
   };
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      sorter: (a, b) => a.name.localeCompare(b.name),
-      width: "15%",
-    },
-    {
-      title: "Department",
-      dataIndex: "department",
-      key: "department",
-      width: "15%",
-    },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-      width: "15%",
-    },
-    {
-      title: "Joining Date",
-      dataIndex: "joiningDate",
-      key: "joiningDate",
-      width: "15%",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => (
-        <Tag color={status === "Active" ? "green" : "red"}>{status}</Tag>
-      ),
-      width: "10%",
-    },
-    {
-      title: "Performance",
-      dataIndex: "performance",
-      key: "performance",
-      render: (score) => <Progress percent={score} strokeColor="#1890ff" />,
-      width: "12%",
-    },
-    {
-      title: "Actions",
-      key: "actions",
-      render: (_, record) => (
-        <div style={{ display: "flex", gap: "8px" }}>
-          <Button
-            type="primary"
-            size="small"
-            icon={<EditOutlined />}
-            onClick={() => onEdit(record)}
-          >
-            Edit
-          </Button>
-          <Popconfirm
-            title="Archive Employee"
-            description="Are you sure you want to archive this employee?"
-            onConfirm={() => handleDelete(record.id)}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button danger size="small" icon={<DeleteOutlined />}>
-              Archive
+  const getColumns = () => {
+    const baseColumns = [
+      {
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        sorter: (a, b) => a.name.localeCompare(b.name),
+        width: isMobile ? "30%" : "15%",
+      },
+      {
+        title: "Department",
+        dataIndex: "department",
+        key: "department",
+        width: isMobile ? "25%" : "15%",
+        responsive: ["md"],
+      },
+      {
+        title: "Role",
+        dataIndex: "role",
+        key: "role",
+        width: isMobile ? "25%" : "15%",
+        responsive: ["lg"],
+      },
+      {
+        title: "Joining Date",
+        dataIndex: "joiningDate",
+        key: "joiningDate",
+        width: isMobile ? "0%" : "15%",
+        responsive: ["lg"],
+      },
+      {
+        title: "Status",
+        dataIndex: "status",
+        key: "status",
+        render: (status) => (
+          <Tag color={status === "Active" ? "green" : "red"}>{status}</Tag>
+        ),
+        width: isMobile ? "20%" : "10%",
+      },
+      {
+        title: "Performance",
+        dataIndex: "performance",
+        key: "performance",
+        render: (score) => <Progress percent={score} strokeColor="#1890ff" />,
+        width: isMobile ? "0%" : "12%",
+        responsive: ["lg"],
+      },
+      {
+        title: "Actions",
+        key: "actions",
+        render: (_, record) => (
+          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
+            <Button
+              type="primary"
+              size="small"
+              icon={<EditOutlined />}
+              onClick={() => onEdit(record)}
+            >
+              {!isMobile && "Edit"}
             </Button>
-          </Popconfirm>
-        </div>
-      ),
-      width: "18%",
-    },
-  ];
+            <Popconfirm
+              title="Archive Employee"
+              description="Are you sure you want to archive this employee?"
+              onConfirm={() => handleDelete(record.id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button danger size="small" icon={<DeleteOutlined />}>
+                {!isMobile && "Archive"}
+              </Button>
+            </Popconfirm>
+          </div>
+        ),
+        width: isMobile ? "25%" : "18%",
+      },
+    ];
+
+    return isMobile
+      ? baseColumns.filter(
+          (col) => !col.responsive || col.responsive.includes("md"),
+        )
+      : baseColumns;
+  };
 
   const displayEmployees =
     employees && employees.length > 0 ? employees : contextEmployees;
 
   return (
     <Table
-      columns={columns}
+      columns={getColumns()}
       dataSource={displayEmployees}
       rowKey="id"
       pagination={false}
-      scroll={{ x: 1200 }}
+      scroll={{ x: "100%" }}
+      size={isMobile ? "small" : "middle"}
     />
   );
 };
